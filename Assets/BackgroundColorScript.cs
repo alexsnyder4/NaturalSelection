@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BackgroundColorScript : MonoBehaviour
@@ -16,12 +17,13 @@ public class BackgroundColorScript : MonoBehaviour
     {
         
     }
-    public void ColorChangeWhite()
-    {
-        obj.GetComponent<SpriteRenderer>().color = Color.white;
-    }
-    public void ColorChangeBlack()
+
+    public void ChangeColorBlack()
     {
         obj.GetComponent<SpriteRenderer>().color = Color.black;
+    }
+    public void ChangeColorWhite()
+    {
+        obj.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
