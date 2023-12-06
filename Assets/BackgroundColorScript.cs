@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BackgroundColorScript : MonoBehaviour
 {
+    public GameObject obj;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,13 @@ public class BackgroundColorScript : MonoBehaviour
     void Update()
     {
         
+    }
+    public void ColorChangeWhite()
+    {
+        obj.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+    public void ColorChangeBlack()
+    {
+        obj.GetComponent<SpriteRenderer>().color = Color.black;
     }
 }
