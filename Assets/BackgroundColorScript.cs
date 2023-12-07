@@ -20,10 +20,12 @@ public class BackgroundColorScript : MonoBehaviour
 
     public void ChangeColorBlack()
     {
+        Color fuckyou = new Color(10f, 10f, 10f);
         obj.GetComponent<SpriteRenderer>().color = Color.black;
     }
     public void ChangeColorWhite()
     {
+        Color fuckyou2 = new Color(234f, 234f, 234f);
         obj.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

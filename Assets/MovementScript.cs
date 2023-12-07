@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CircleCollider2D))]
-
 public class MovementScript : MonoBehaviour
 {
-     public float speed = 5f;
+    [SerializeField]
+    GameState gameState;
+    public float speed = 5f;
 
     private Rigidbody2D rb;
 
@@ -45,14 +45,13 @@ public class MovementScript : MonoBehaviour
             // Optional: Apply an additional force to make the bounce more noticeable
             rb.AddForce(reflectedVelocity.normalized * speed * 10f, ForceMode2D.Impulse);
         }
-        else if (collision.gameObject.CompareTag("Ball"))
+        
+        else if (collision.gameObject.CompareTag("KillZone"))
         {
-            Vector2 normal = collision.contacts[0].normal;
-            Vector2 reflectedVelocity = Vector2.Reflect(rb.velocity, normal);
-            rb.velocity = reflectedVelocity.normalized * speed;
-
-            // Optional: Apply an additional force to make the bounce more noticeable
-            rb.AddForce(reflectedVelocity.normalized * speed * 10f, ForceMode2D.Impulse);
+            Destroy(gameObject);
+            gameState.numBugs--;
         }
     }
+
+    
 }
