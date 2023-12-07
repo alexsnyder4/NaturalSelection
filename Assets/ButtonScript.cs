@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class BackgroundColorScript : MonoBehaviour
+public class ButtonScript : MonoBehaviour
 {
-    public GameObject obj;
     [SerializeField]
     GameState gameState;
     // Start is called before the first frame update
@@ -20,20 +18,22 @@ public class BackgroundColorScript : MonoBehaviour
         
     }
 
-    public void ChangeColorBlack()
+
+    public void SlowSpeed()
     {
         if (!gameState.SimStarted)
         {
-            Color fuckyou = new Color(.1f, .1f, .1f, 1f);
-            obj.GetComponent<SpriteRenderer>().color = fuckyou;
+            gameState.speed = 1.5f;
         }
+        
     }
-    public void ChangeColorWhite()
+
+    public void FastSpeed()
     {
         if (!gameState.SimStarted)
         {
-            Color fuckyou2 = new Color(.9f, .9f, .9f, 1f);
-            obj.GetComponent<SpriteRenderer>().color = fuckyou2;
+            gameState.speed = 3f;
         }
     }
+
 }

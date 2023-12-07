@@ -10,7 +10,7 @@ public class MovementScript : MonoBehaviour
     Vector2 origMvmnt;
     public bool spawnBugCalled = false;
     public GameState gameState;
-    public float speed = 5f;
+    public float speed;
     private int calledOnce = 0;
     [SerializeField]
     public CollisionScript cs; // Reference to BugSpawnerScript
@@ -24,16 +24,23 @@ public class MovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         // Set the initial direction
-        
- 
-    }
 
+
+    }
+    private void Update()
+    {
+        if (spawnBugCalled)
+        {
+            StartCoroutine(ResetSpawnBugCalled());
+        }
+        speed = gameState.speed;
+    }
     void FixedUpdate()
     {
-        if(calledOnce < 1)
+        if (calledOnce < 1)
         {
-            
-            if(gameState.SimStarted)
+
+            if (gameState.SimStarted)
             {
                 SetRandomDirection();
                 GetComponent<CircleCollider2D>().enabled = true;
@@ -61,13 +68,13 @@ public class MovementScript : MonoBehaviour
             // Optional: Apply an additional force to make the bounce more noticeable
             rb.AddForce(reflectedVelocity.normalized * speed * 10f, ForceMode2D.Impulse);
         }
-        
+
         else if (collision.gameObject.CompareTag("KillZone"))
         {
             Destroy(gameObject);
             gameState.numBugs--;
         }
-    
+
         else if (collision.gameObject.CompareTag("Ball"))
         {
             Vector3 position = gameObject.transform.position;
@@ -80,23 +87,29 @@ public class MovementScript : MonoBehaviour
                     spawnBugCalled = true;
                     position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1f, gameObject.transform.position.z);
                     cs.SpawnBug(position);
-                    StartCoroutine(ResetSpawnBugCalled());
+                    
                 }
                 else if (position.y <= 0.37f)
                 {
                     spawnBugCalled = true;
                     position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z);
                     cs.SpawnBug(position);
-                    StartCoroutine(ResetSpawnBugCalled());
+                    
                 }
             }
         }
-        
+
     }
     private IEnumerator ResetSpawnBugCalled()
     {
         yield return new WaitForSeconds(2f); // Adjust the delay as needed
         spawnBugCalled = false;
+    }
+
+    public void OnMouseDown()
+    {
+        Destroy(gameObject);
+        gameState.numBugs--;
     }
 }
 
