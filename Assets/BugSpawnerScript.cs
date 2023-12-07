@@ -9,6 +9,7 @@ public class BugSpawnerScript : MonoBehaviour
     int currentBugs =0;
     [SerializeField]
     GameObject bugPrefab;
+    
     bool isSpawning = false;
     // Start is called before the first frame update
     void Start()
