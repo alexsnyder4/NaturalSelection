@@ -7,4 +7,15 @@ public class GameState : ScriptableObject
 {
     [SerializeField]
     public int numBugs = 0;
+    public int startBugs = 0;
+    public float BB = 0;
+    public float Bb = 0;
+    public float bb = 0;
+    public int currGen = 1;
+    public bool SimStarted = false;
+    public bool isSpawning = false;
+    public int calledOnce = 0;
+
+
+
 }

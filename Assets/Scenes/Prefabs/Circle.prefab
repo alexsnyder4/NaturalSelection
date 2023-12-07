@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7247742251931037995}
   - component: {fileID: 3442345242195953354}
   - component: {fileID: 50100770954729170}
-  - component: {fileID: -9172104562669843768}
+  - component: {fileID: -6374920592536363235}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Ball
@@ -95,7 +95,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5297192569046174529}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -162,9 +162,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f8b67cca74d8249b7d2e95274a2eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origMvmnt: {x: 0, y: 0}
+  spawnBugCalled: 0
   gameState: {fileID: 11400000, guid: 27e9e59c0c004fc4fa65e8b7bc8b6d27, type: 2}
-  speed: 5
---- !u!114 &-9172104562669843768
+  speed: 1.5
+  cs: {fileID: -6374920592536363235}
+--- !u!114 &-6374920592536363235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,8 +176,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5297192569046174529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd656be6eab58af4fab10077081e588d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dcd198ff552c4640b430cdc618a8033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: {fileID: 11400000, guid: 27e9e59c0c004fc4fa65e8b7bc8b6d27, type: 2}
   bugPrefab: {fileID: 5297192569046174529}
+  gameState: {fileID: 11400000, guid: 27e9e59c0c004fc4fa65e8b7bc8b6d27, type: 2}
+  canSpawn: 0

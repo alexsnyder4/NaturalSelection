@@ -1,67 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class BugSpawnerScript : MonoBehaviour
 {
     [SerializeField] 
     GameState gameState;
-    int currentBugs =0;
+    public int currentBugs = 0;
     [SerializeField]
     GameObject bugPrefab;
-    
-    bool isSpawning = false;
+    public bool matchStarted;
+    private int calledOnce = 0;
+
+    float rectangleMinX = -6.727f;
+    float rectangleMaxX = 5.251f;
+    float rectangleMinY = -2.916f;
+    float rectangleMaxY = 3.314f;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnBugTimer(2.0f));
+
     }
 
     // Update is called once per frame
     void Update()
     {
         currentBugs = gameState.numBugs;
+        matchStarted = gameState.SimStarted;
+        calledOnce = gameState.calledOnce;
+
+        if (calledOnce < 1 && matchStarted)
+        {
+            Debug.Log("SPAWN");
+            SpawnBugsInitial(gameState.startBugs);
+            calledOnce++;
+            gameState.calledOnce = calledOnce;
+        }
     }
 
-    void SpawnBug(Vector3 pos)
+    public void SpawnBugsInitial(int numBugsToSpawn)
     {
-        
-        
-        if (isSpawning && currentBugs < 100)
+        for (int i = 0; i < numBugsToSpawn; i++)
         {
-            Debug.Log(currentBugs);
-            Instantiate(bugPrefab, pos, Quaternion.identity);
-            StartCoroutine(SpawnBugTimer(10f));
+            Vector3 randomPosition = GetRandomPositionInsideRectangle();
+            Instantiate(bugPrefab, randomPosition, Quaternion.identity);
             gameState.numBugs++;
         }
-
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+  
+    
+
+    public Vector3 GetRandomPositionInsideRectangle()
     {
-        if (collision.gameObject.CompareTag("Ball"))
-        {
-            Vector3 position = gameObject.transform.position;
-            if(position.y > 0.37f)
-            {
-                position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1f, gameObject.transform.position.z);
-                SpawnBug(position);
-            }
-            else if (position.y <= 0.37f)
-            {
-                position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z);
-                SpawnBug(position);
-            }
-
-
-        }
-    }
-
-    IEnumerator SpawnBugTimer(float waitTime)
-    {
+        // Generate a random position
+        float randomX = Random.Range(rectangleMinX, rectangleMaxX);
+        float randomY = Random.Range(rectangleMinY, rectangleMaxY);
         
-        yield return new WaitForSeconds(waitTime);
-        isSpawning = true;
-
+        return new Vector3(randomX, randomY, 0f);
     }
+    
+  
+
 }
