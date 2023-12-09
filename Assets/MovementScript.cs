@@ -12,6 +12,8 @@ public class MovementScript : MonoBehaviour
     public GameState gameState;
     public float speed;
     private int calledOnce = 0;
+    public bool RandomMovement;
+    private float timeToMove = 0f;
     [SerializeField]
     public CollisionScript cs; // Reference to BugSpawnerScript
 
@@ -29,10 +31,28 @@ public class MovementScript : MonoBehaviour
     }
     private void Update()
     {
+        RandomMovement = gameState.movementType;
+        speed = gameState.speed;
+
+        if (RandomMovement)
+        {
+            // Use Time.deltaTime to accumulate time until it reaches 2 seconds
+            timeToMove += Time.deltaTime;
+
+            // Check if it's time to move
+            if (timeToMove >= 2f)
+            {
+                SetRandomDirection();
+                timeToMove = 0f; // Reset the timer
+                Debug.Log("ready to move again");
+            }
+        }
+
         if (spawnBugCalled)
         {
             StartCoroutine(ResetSpawnBugCalled());
         }
+
         speed = gameState.speed;
     }
     void FixedUpdate()
@@ -43,7 +63,6 @@ public class MovementScript : MonoBehaviour
             if (gameState.SimStarted)
             {
                 SetRandomDirection();
-                GetComponent<CircleCollider2D>().enabled = true;
             }
         }
     }
@@ -106,10 +125,16 @@ public class MovementScript : MonoBehaviour
         spawnBugCalled = false;
     }
 
+   
     public void OnMouseDown()
     {
         Destroy(gameObject);
         gameState.numBugs--;
+    }
+
+    public void ToggleMovement()
+    {
+        RandomMovement = !RandomMovement;
     }
 }
 

@@ -16,6 +16,7 @@ public class GameState : ScriptableObject
     public bool isSpawning = false;
     public int calledOnce = 0;
     public float speed = 1.5f;
+    public bool movementType;
      
 
 
