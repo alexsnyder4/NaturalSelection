@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameState", menuName = "State/NaturalSelection")]
 public class GameState : ScriptableObject
 {
-    [SerializeField]
+  
     public int numBugs = 0;
     public int startBugs = 0;
     public float BB = 0;
@@ -15,7 +15,8 @@ public class GameState : ScriptableObject
     public bool SimStarted = false;
     public bool isSpawning = false;
     public int calledOnce = 0;
-
+    public float speed = 1.5f;
+     
 
 
 }
