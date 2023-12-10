@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     GameState gameState;
-    public TMP_Text input;
+
     public Slider BB;
     public Slider Bb;
     public Slider bb;
@@ -28,6 +28,5 @@ public class GameManager : MonoBehaviour
         gameState.BB = BB.value;
         gameState.Bb = Bb.value;
         gameState.bb = bb.value;
-        gameState.startBugs = int.Parse(input.text);
     }
 }

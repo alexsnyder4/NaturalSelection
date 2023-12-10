@@ -54,6 +54,11 @@ public class MovementScript : MonoBehaviour
         }
 
         speed = gameState.speed;
+
+        if(gameState.SimStarted == false)
+        {
+            Destroy(gameObject);
+        }
     }
     void FixedUpdate()
     {
@@ -103,18 +108,14 @@ public class MovementScript : MonoBehaviour
             {
                 if (position.y > 0.37f)
                 {
-                    spawnBugCalled = true;
                     position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1f, gameObject.transform.position.z);
-                    cs.SpawnBug(position);
-                    
                 }
                 else if (position.y <= 0.37f)
                 {
-                    spawnBugCalled = true;
                     position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z);
-                    cs.SpawnBug(position);
-                    
                 }
+                spawnBugCalled = true;
+                cs.SpawnBug(position);
             }
         }
 
