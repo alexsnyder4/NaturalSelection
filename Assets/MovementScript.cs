@@ -54,6 +54,11 @@ public class MovementScript : MonoBehaviour
         }
 
         speed = gameState.speed;
+
+        if(gameState.SimStarted == false)
+        {
+            Destroy(gameObject);
+        }
     }
     void FixedUpdate()
     {

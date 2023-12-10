@@ -30,4 +30,9 @@ public class PauseScript : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         gameState.isSpawning = true;
     }
+
+    public void EndSim()
+    {
+        gameState.SimStarted = false;
+    }
 }
