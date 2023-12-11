@@ -12,6 +12,7 @@ public class StepsFill : MonoBehaviour
     GameState gameState;
     [SerializeField]
     TMP_Text text;
+    float num = 0.005f;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +24,11 @@ public class StepsFill : MonoBehaviour
     {
         if (gameState.SimStarted)
         {
-            button.GetComponent<Image>().fillAmount += .0005f;
-            if (button.GetComponent<Image>().fillAmount == 1)
+            button.GetComponent<Image>().fillAmount = num += 0.005f;
+            
+            if (button.GetComponent<Image>().fillAmount >= 1)
             {
+                num = 0.005f;
                 gameState.currGen++;
                 button.GetComponent<Image>().fillAmount = 0;
                 text.text = gameState.currGen.ToString();
