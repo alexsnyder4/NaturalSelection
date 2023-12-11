@@ -20,13 +20,16 @@ public class GameManager : MonoBehaviour
         gameState.numBugs = 0;
         gameState.isSpawning = false;
         gameState.calledOnce = 0;
+        gameState.currentSub = 0;
+        gameState.currentMid = 0;
+        gameState.currentDom = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameState.BB = BB.value;
-        gameState.Bb = Bb.value;
-        gameState.bb = bb.value;
+        gameState.BBDom = BB.value;
+        gameState.BbMid = Bb.value;
+        gameState.bbSub = bb.value;
     }
 }

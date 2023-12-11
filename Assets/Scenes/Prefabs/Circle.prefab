@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f8b67cca74d8249b7d2e95274a2eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allele: {fileID: 11400000, guid: 98a5ea7d69b99084b86c5f8ea9068c2f, type: 2}
   origMvmnt: {x: 0, y: 0}
   spawnBugCalled: 0
   gameState: {fileID: 11400000, guid: 27e9e59c0c004fc4fa65e8b7bc8b6d27, type: 2}

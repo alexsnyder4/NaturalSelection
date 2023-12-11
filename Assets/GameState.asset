@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2a0cff7d7d5a14288c6f4e038dabbc, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: 
+  numBugs: 0
+  startBugs: 0
+  BB: 0
+  Bb: 0
+  bb: 0
+  currGen: 1
+  SimStarted: 0
+  isSpawning: 0
+  calledOnce: 0
+  speed: 1.5
+  movementType: 0

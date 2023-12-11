@@ -3,7 +3,9 @@ guid: 2dcd198ff552c4640b430cdc618a8033
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bugPrefab: {fileID: 5297192569046174529, guid: fcb3770e864426942abaafe3edab7e63, type: 3}
+  - gameState: {fileID: 11400000, guid: 27e9e59c0c004fc4fa65e8b7bc8b6d27, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

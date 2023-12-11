@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
 {
@@ -8,6 +9,15 @@ public class ButtonScript : MonoBehaviour
     GameState gameState;
     [SerializeField]
     GameObject[] killZones;
+
+    [SerializeField]
+    Slider slider1;
+    [SerializeField]
+    Slider slider2;
+    [SerializeField]
+    Slider slider3;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -80,5 +90,18 @@ public class ButtonScript : MonoBehaviour
                 
             }
         }
+    }
+
+    public void Slider1Value()
+    {
+        gameState.BBDom = (int)(slider1.value * gameState.startBugs * 10);
+    }
+    public void Slider2Value()
+    {
+        gameState.BbMid = (int)(slider2.value * gameState.startBugs * 10);
+    }
+    public void Slider3Value()
+    {
+        gameState.bbSub = (int)(slider3.value * gameState.startBugs * 10);
     }
 }

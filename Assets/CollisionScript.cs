@@ -24,12 +24,32 @@ public class CollisionScript : MonoBehaviour
     }
 
 
-    public void SpawnBug(Vector3 pos)
+    public void SpawnBug(Vector3 pos, string childType)
     {
         if (gameState.isSpawning && currentBugs < 100 && canSpawn)
         {
-            Debug.Log("Current Bugs: " + currentBugs);
-            Instantiate(bugPrefab, pos, Quaternion.identity);
+            
+            GameObject newBug = Instantiate(bugPrefab, pos, Quaternion.identity);
+            if(childType == "BB")
+            {
+                newBug.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+                newBug.name = "blackDom";
+                gameState.currentDom++;
+            }
+            else if(childType == "Bb")
+            {
+                newBug.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+                newBug.name = "Mid";
+                gameState.currentMid++;
+            }
+            else
+            {
+                newBug.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                newBug.name = "White";
+                gameState.currentSub++;
+            }
+            Debug.Log("Spawning with " + childType);
+            newBug.gameObject.GetComponent<MovementScript>().allele = childType;
             gameState.numBugs++;
             canSpawn = false;
             StartCoroutine(SpawnWaitTimer(2f));
@@ -41,3 +61,4 @@ public class CollisionScript : MonoBehaviour
         canSpawn = true;
     }
 }
+

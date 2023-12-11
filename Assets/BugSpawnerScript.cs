@@ -33,7 +33,6 @@ public class BugSpawnerScript : MonoBehaviour
 
         if (calledOnce < 1 && matchStarted)
         {
-            Debug.Log("SPAWN");
             SpawnBugsInitial(gameState.startBugs);
             calledOnce++;
             gameState.calledOnce = calledOnce;
@@ -42,11 +41,43 @@ public class BugSpawnerScript : MonoBehaviour
 
     public void SpawnBugsInitial(int numBugsToSpawn)
     {
-        for (int i = 0; i < numBugsToSpawn; i++)
+        int BBToSpawn = (int)(gameState.startBugs * gameState.BBDom);
+        int BbToSpawn = (int)(gameState.startBugs * gameState.BbMid);
+        int bbToSpawn = (int)(gameState.startBugs * gameState.bbSub);
+        
+        for (int i = 0; i < BBToSpawn; i++)
         {
             Vector3 randomPosition = GetRandomPositionInsideRectangle();
-            Instantiate(bugPrefab, randomPosition, Quaternion.identity);
+            
+            
+            GameObject newBug = Instantiate(bugPrefab, randomPosition, Quaternion.identity);
+            
+            newBug.gameObject.GetComponent<MovementScript>().allele = "BB";
+            newBug.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+            Debug.Log("After stat BB: " + newBug.gameObject.GetComponent<MovementScript>().allele);
             gameState.numBugs++;
+            gameState.currentDom++;
+        }
+        for (int i = 0; i < BbToSpawn; i++)
+        {
+            Vector3 randomPosition = GetRandomPositionInsideRectangle();
+            
+            GameObject newBug = Instantiate(bugPrefab, randomPosition, Quaternion.identity);
+            newBug.gameObject.GetComponent<MovementScript>().allele = "Bb";
+            newBug.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+            Debug.Log("After stat Bb: " + newBug.gameObject.GetComponent<MovementScript>().allele);
+            gameState.numBugs++;
+            gameState.currentMid++;
+        }
+        for (int i = 0; i < bbToSpawn; i++)
+        {
+            Vector3 randomPosition = GetRandomPositionInsideRectangle();
+            GameObject newBug = Instantiate(bugPrefab, randomPosition, Quaternion.identity);
+            newBug.gameObject.GetComponent<MovementScript>().allele = "bb";
+            newBug.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            Debug.Log("After stat bb: " + newBug.gameObject.GetComponent<MovementScript>().allele);
+            gameState.numBugs++;
+            gameState.currentSub++;
         }
     }
 

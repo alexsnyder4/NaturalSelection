@@ -4,7 +4,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - allele: {fileID: 11400000, guid: 98a5ea7d69b99084b86c5f8ea9068c2f, type: 2}
   - gameState: {fileID: 11400000, guid: 27e9e59c0c004fc4fa65e8b7bc8b6d27, type: 2}
+  - cs: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

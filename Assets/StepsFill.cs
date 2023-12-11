@@ -23,7 +23,7 @@ public class StepsFill : MonoBehaviour
     {
         if (gameState.SimStarted)
         {
-            button.GetComponent<Image>().fillAmount += .005f;
+            button.GetComponent<Image>().fillAmount += .0005f;
             if (button.GetComponent<Image>().fillAmount == 1)
             {
                 gameState.currGen++;
