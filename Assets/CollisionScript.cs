@@ -26,7 +26,7 @@ public class CollisionScript : MonoBehaviour
 
     public void SpawnBug(Vector3 pos, string childType)
     {
-        if (gameState.isSpawning && currentBugs < 100 && canSpawn)
+        if (gameState.isSpawning && currentBugs < 200 && canSpawn)
         {
             
             GameObject newBug = Instantiate(bugPrefab, pos, Quaternion.identity);

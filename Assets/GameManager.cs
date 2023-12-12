@@ -31,5 +31,8 @@ public class GameManager : MonoBehaviour
         gameState.BBDom = BB.value;
         gameState.BbMid = Bb.value;
         gameState.bbSub = bb.value;
+        
     }
+
+   
 }
