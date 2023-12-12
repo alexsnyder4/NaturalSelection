@@ -1936,6 +1936,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 920645580}
   gameState: {fileID: 11400000, guid: 27e9e59c0c004fc4fa65e8b7bc8b6d27, type: 2}
+  whiteButton: {fileID: 2050843588}
+  blackButton: {fileID: 1111452601}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1958,6 +1960,12 @@ MonoBehaviour:
   - {fileID: 1030390885}
   - {fileID: 783270787}
   - {fileID: 697191566}
+  fastButton: {fileID: 206106773}
+  slowButton: {fileID: 1220151503}
+  manyButton: {fileID: 620649303}
+  fewButton: {fileID: 1666206975}
+  randomButton: {fileID: 1134957914}
+  linearButton: {fileID: 2107200068}
   slider1: {fileID: 795576636}
   slider2: {fileID: 2029108224}
   slider3: {fileID: 1037535104}
