@@ -21,4 +21,5 @@ public class GameState : ScriptableObject
     public int calledOnce = 0;
     public float speed = 1.5f;
     public bool movementType;
+    
 }

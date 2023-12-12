@@ -151,6 +151,18 @@ public class MovementScript : MonoBehaviour
     {
         Destroy(gameObject);
         gameState.numBugs--;
+        if(allele == "BB")
+        {
+            gameState.currentDom--;
+        }
+        else if(allele == "Bb")
+        {
+            gameState.currentMid--;
+        }
+        else if(allele == "bb")
+        {
+            gameState.currentSub--;
+        }
     }
 
     public void ToggleMovement()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,17 +30,27 @@ public class ButtonScript : MonoBehaviour
     [SerializeField]
     Slider slider3;
 
-    
+    [SerializeField]
+    TMP_Text currBB;
+    [SerializeField]
+    TMP_Text currBb;
+    [SerializeField]
+    TMP_Text currbb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        currBB.text = "Current BB: " + gameState.currentDom;
+        currBb.text = "Current Bb: " + gameState.currentMid;
+        currbb.text = "Current bb: " + gameState.currentSub;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        currBB.text = "Current BB: " + gameState.currentDom;
+        currBb.text = "Current Bb: " + gameState.currentMid;
+        currbb.text = "Current bb: " + gameState.currentSub;
     }
 
 
