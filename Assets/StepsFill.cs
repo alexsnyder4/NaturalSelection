@@ -17,15 +17,20 @@ public class StepsFill : MonoBehaviour
     void Start()
     {
         button.GetComponent<Image>().fillAmount = 0;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    private void FixedUpdate()
+    {
         if (gameState.SimStarted)
         {
-            button.GetComponent<Image>().fillAmount = num += 0.005f;
-            
+            StartCoroutine(IncreaseFill(num));
             if (button.GetComponent<Image>().fillAmount >= 1)
             {
                 num = 0.005f;
@@ -34,5 +39,12 @@ public class StepsFill : MonoBehaviour
                 text.text = gameState.currGen.ToString();
             }
         }
+    }
+
+    IEnumerator IncreaseFill(float waitTime)
+    {
+        button.GetComponent<Image>().fillAmount = num += 0.005f;
+        yield return new WaitForSeconds(waitTime);  
+        
     }
 }
