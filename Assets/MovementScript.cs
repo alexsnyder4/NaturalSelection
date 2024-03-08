@@ -118,27 +118,35 @@ public class MovementScript : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Ball"))
         {
-            Vector3 position = gameObject.transform.position;
-            cs = collision.gameObject.GetComponent<CollisionScript>();
-
-            if (cs.canSpawn && !spawnBugCalled)
+            if (!BugSpawnerScript.BallSpawned) // Check if a ball has not been spawned yet
             {
-                string childType = determineAllele(collision);
-                Debug.Log("Should have " + childType);
-                if (position.y > 0.37f)
-                {
+                Vector3 position = gameObject.transform.position;
+                cs = collision.gameObject.GetComponent<CollisionScript>();
 
-                    position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1f, gameObject.transform.position.z);
-                }
-                else if (position.y <= 0.37f)
+                if (cs.canSpawn && !spawnBugCalled)
                 {
-                    position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z);
+                    string childType = determineAllele(collision);
+                    if (position.y > 0.37f)
+                    {
+                        position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1f, gameObject.transform.position.z);
+                    }
+                    else if (position.y <= 0.37f)
+                    {
+                        position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z);
+                    }
+                    spawnBugCalled = true;
+                    cs.SpawnBug(position, childType);
+
+                    BugSpawnerScript.SetBallSpawned(true); // Set the flag to true after spawning the ball
                 }
-                spawnBugCalled = true;
-                cs.SpawnBug(position, childType);
             }
         }
 
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        BugSpawnerScript.SetBallSpawned(false);
     }
     private IEnumerator ResetSpawnBugCalled()
     {
@@ -173,75 +181,75 @@ public class MovementScript : MonoBehaviour
     public string determineAllele(Collision2D collision)
     {
         string myType = this.allele;
-    string otherType = collision.gameObject.GetComponent<MovementScript>().allele;
-    Debug.Log("other type " + otherType);
-    
-    int randNum = Random.Range(0, 2);
-    int randNum2 = Random.Range(0, 4);
-    Debug.Log(randNum2);
+        string otherType = collision.gameObject.GetComponent<MovementScript>().allele;
+        Debug.Log("other type " + otherType);
+        
+        int randNum = Random.Range(0, 2);
+        int randNum2 = Random.Range(0, 4);
+        Debug.Log(randNum2);
 
-    switch (myType)
-    {
-        case "BB":
-            Debug.Log(myType + " taken as BB");
-            if (otherType == "BB")
-                return "BB";
-            else if (otherType == "Bb")
-            {
-                if (randNum == 0)
+        switch (myType)
+        {
+            case "BB":
+                Debug.Log(myType + " taken as BB");
+                if (otherType == "BB")
                     return "BB";
-                else
-                    return "Bb";
-            }
-            else
-                return "Bb";
-
-        case "Bb":
-            Debug.Log(myType + " taken as Bb");
-            if (otherType == "BB")
-            {
-                if (randNum == 0)
-                    return "BB";
-                else
-                    return "Bb";
-            }
-            else if (otherType == "Bb")
-            {
-                if (randNum2 == 0)
+                else if (otherType == "Bb")
                 {
-                    Debug.Log("Should have BB");
-                    return "BB";
-                }
-                else if (randNum2 == 1 || randNum2 == 2)
-                {
-                    Debug.Log("Should have Bb");
-                    return "Bb";
+                    if (randNum == 0)
+                        return "BB";
+                    else
+                        return "Bb";
                 }
                 else
+                    return "Bb";
+
+            case "Bb":
+                Debug.Log(myType + " taken as Bb");
+                if (otherType == "BB")
                 {
-                    Debug.Log("Should have bb");
+                    if (randNum == 0)
+                        return "BB";
+                    else
+                        return "Bb";
+                }
+                else if (otherType == "Bb")
+                {
+                    if (randNum2 == 0)
+                    {
+                        Debug.Log("Should have BB");
+                        return "BB";
+                    }
+                    else if (randNum2 == 1 || randNum2 == 2)
+                    {
+                        Debug.Log("Should have Bb");
+                        return "Bb";
+                    }
+                    else
+                    {
+                        Debug.Log("Should have bb");
+                        return "bb";
+                    }
+                }
+                else
+                    return "Bb";
+
+            case "bb":
+                Debug.Log(myType + " taken as bb");
+                if (otherType == "BB")
+                    return "Bb";
+                else if (otherType == "Bb")
+                {
+                    if (randNum == 0)
+                        return "Bb";
+                    else
+                        return "bb";
+                }
+                else
                     return "bb";
-                }
-            }
-            else
-                return "Bb";
-
-        case "bb":
-            Debug.Log(myType + " taken as bb");
-            if (otherType == "BB")
-                return "Bb";
-            else if (otherType == "Bb")
-            {
-                if (randNum == 0)
-                    return "Bb";
-                else
-                    return "bb";
-            }
-            else
-                return "bb";
-    }
-    Debug.Log("returned BB");
-    return "BB";
+        }
+        Debug.Log("returned BB");
+        return "BB";
     }
 }
 
