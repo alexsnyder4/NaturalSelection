@@ -8,6 +8,8 @@ public class CollisionScript : MonoBehaviour
     GameObject bugPrefab;
      [SerializeField] 
     GameState gameState;
+    [SerializeField]
+    public float spawnDelayTime = 2f;
     int currentBugs = 0;
     public bool canSpawn = false;
     // Start is called before the first frame update
@@ -52,7 +54,7 @@ public class CollisionScript : MonoBehaviour
             newBug.gameObject.GetComponent<MovementScript>().allele = childType;
             gameState.numBugs++;
             canSpawn = false;
-            StartCoroutine(SpawnWaitTimer(2f));
+            StartCoroutine(SpawnWaitTimer(spawnDelayTime));
         }
     }
     IEnumerator SpawnWaitTimer(float waitTime)
